@@ -6,7 +6,7 @@ export default class Melow extends Component {
         this.state = {
             width:0,
             height:0,
-            scale: 1
+            maxRadius:1
         }
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     }
@@ -24,31 +24,34 @@ export default class Melow extends Component {
     updateWindowDimensions() {
         const canvas = document.getElementById("canvas");
         const offsetTop = canvas ? canvas.offsetTop: 0;
-        const relativeHeight = window.innerHeight - offsetTop; //TODO add delta for (offsetBottom?)
-        const relativeWidth = window.innerWidth; //TODO add delta for (offsetLeft?)
+        const relativeHeight = window.innerHeight - offsetTop - 50; //TODO add delta for (offsetBottom?)
+        const relativeWidth = window.innerWidth - 50; //TODO add delta for (offsetLeft?)
         const maxRadius = Math.min(relativeHeight, relativeWidth) * 0.5 * 0.7;
-        console.log("canvas " + canvas);
         
         this.setState({ 
             width: relativeWidth, 
             height: relativeHeight,
-            scale: maxRadius / this.props.outerRadius
+            maxRadius: maxRadius
         });
     }
     
+    co
+
     componentDidUpdate() {
         this.updateCanvas();
     }
 
     updateCanvas() {
-        console.log("updateCanvas");
         const ctx = this.refs.canvas.getContext('2d');
         const cx = this.state.width/2;
         const cy = this.state.height/2;
         const PI2 = Math.PI * 2;
+        const scale =  this.state.maxRadius / this.props.outerRadius;
         
+        ctx.clearRect(0, 0, this.state.width, this.state.height);
+
         ctx.beginPath();
-        ctx.arc(cx, cy, this.props.outerRadius * this.state.scale, 0, PI2, true); 
+        ctx.arc(cx, cy, this.state.maxRadius, 0, PI2, true); 
         ctx.fillStyle = 'green';
         ctx.fill();
         ctx.stroke();
@@ -56,7 +59,7 @@ export default class Melow extends Component {
 
         ctx.moveTo(cx, cy);
         ctx.beginPath();
-        ctx.arc(cx, cy, this.props.innerRadius * this.state.scale, 0, PI2, true); 
+        ctx.arc(cx, cy, this.props.innerRadius * scale, 0, PI2, true); 
         ctx.fillStyle = 'red';
         ctx.fill();
         ctx.stroke();

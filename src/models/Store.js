@@ -3,7 +3,7 @@ import { observable, computed } from "mobx";
 class Store {
     @observable startWaterPercent = 0.99;
     @observable startWeight = 100;   
-    @observable currentWaterPercent = 0.98;
+    @observable currentWaterPercent = 0.7;
 
     @computed get currentWeight() {
        /*  
