@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import '../App.scss';
-export default class TileHeader extends Component {
+export default class TitleHeader extends Component {
     render(){
         return(
-            <h1>Задача про вес арбуза</h1>
+            <div className ="title-header"><h1>Задача про вес арбуза</h1></div>
         ); 
     }
 }

@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import '../App.scss';
-import store from "../models/Store"
+
 export default class TaskHeader extends Component {
     render(){
         return(
-            <h2>
-                Начальный вес: {store.startWeight} кг <br/>
-                Начальный процент воды: {Math.round(store.startWaterPercent * 100)}%<br/>
-                Текущий процент воды: {Math.round(store.currentWaterPercent * 100)}%<br/>
-                Текущий вес арбуза: {this.props.weight} кг
-             </h2>
+            <div className="task-header">
+                <h2>
+                    Начальный вес: <span className="values">{this.props.store.startWeight} кг</span><br/>
+                    Начальный процент воды: <span className="values">{Math.round(this.props.store.startWaterPercent * 100)}%</span><br/>
+                    Текущий процент воды: <span className="values">{Math.round(this.props.store.currentWaterPercent * 100)}%</span><br/>
+                    Текущий вес арбуза: <span className="values">{this.props.store.currentWeight.toFixed(2)} кг</span>
+                </h2>
+             </div>
         ); 
     }
 }
