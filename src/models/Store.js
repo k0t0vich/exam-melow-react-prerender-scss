@@ -3,14 +3,16 @@ import { observable, computed } from "mobx";
 class Store {
     @observable startWaterPercent = 0.99;
     @observable startWeight = 100;   
-    @observable currentWaterPercent = 0.70;
+    @observable currentWaterPercent = 0.98;
 
     @computed get currentWeight() {
+       /*  
         var startCrustPercent = 1 - this.startWaterPercent;
         var crustWeight = this.startWeight * startCrustPercent;
         var result = crustWeight  / (1 - this.currentWaterPercent);
-        return result;
-        //return this.startWeight * (1 - this.startWaterPercent) / (1 - this.currentWaterPercent);
+        return result; 
+        */
+        return this.startWeight * (1 - this.startWaterPercent) / (1 - this.currentWaterPercent);
     }
 
     @computed get innerRadius(){
