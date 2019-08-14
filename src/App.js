@@ -19,12 +19,10 @@ export default class App extends Component {
     }
 
     @action changeWaterPercent(evt, value){
-      console.log("slide " + value);
       store.currentWaterPercent = value / 100;
     } 
 
     @action changeStartWeight(evt, value){
-      console.log("slide " + value);
       store.startWeight = value;
     } 
 
@@ -40,9 +38,10 @@ export default class App extends Component {
                     onChange={this.changeStartWeight} 
                     min={1} 
                     max={1000} 
-                    //marks={true}
+                    marks={true}
                     value={store.startWeight}
                     orientation="vertical"
+                    valueLabelDisplay="on"
                   />
                 </div>
                 <Melow 
@@ -56,8 +55,8 @@ export default class App extends Component {
                 onChange={this.changeWaterPercent} 
                 min={1} 
                 max={99} 
-                //marks={true}
                 value={store.currentWaterPercent * 100}
+                valueLabelDisplay="on"
               />
             </div>
           </>
