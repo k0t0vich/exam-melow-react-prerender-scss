@@ -1,9 +1,11 @@
 const path = require("path");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const PrerenderSPAPlugin = require('prerender-spa-plugin')
 
 module.exports = {
   entry: "./src/index.js",
+  mode:"production"
   output: {
     filename: "./main.js"
   },
@@ -63,6 +65,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.html"
     }),
+    new PrerenderSPAPlugin({
+      // Required - The path to the webpack-outputted app to prerender.
+      staticDir: path.join(__dirname, 'dist'),
+      // Required - Routes to render.
+      routes: [ '/'],
+    })
   ],
   devtool: 'eval'
 };
