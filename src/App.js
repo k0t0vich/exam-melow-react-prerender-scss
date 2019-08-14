@@ -10,8 +10,8 @@ import Slider from '@material-ui/core/Slider';
 
 import './App.scss';
 
-@observer
-export default class App extends Component {
+
+export default @observer class App extends Component {
     constructor(props){
       super(props);
       this.changeWaterPercent =  this.changeWaterPercent.bind(this);
@@ -38,7 +38,6 @@ export default class App extends Component {
                     onChange={this.changeStartWeight} 
                     min={1} 
                     max={1000} 
-                    marks={true}
                     value={store.startWeight}
                     orientation="vertical"
                     valueLabelDisplay="on"
